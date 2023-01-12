@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 11 17:07:21 2023
+
+@author: hongjiang
+"""
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- Make it compatible to mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Customer Churn Prediction</title>
+  
+</head>
+
+<body style="background: #000; text-align: center;">
+ <div class="login">
+	<h1 style="color:#5DADE2; font-size:40px;">Customer Churn Prediction</h1>
+	<h2 style="color:#FD8368; font-size:20px;">Please enter customers information accordingly</h2>
+
+     <!-- Action is where the data is sent. In our case, predict page.
+     If action is omitted, it assumed to be the current page -->
+    <form action="{{ url_for('predict')}}" method="post">
+    <p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Month of Tenure: </label><br>
+    	<input style="height:30px; width:500px; font-size:12pt;" type="text" name="Tenure (Month)" placeholder="" required="required" /><br>
+    	</p>
+    
+    <p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Cashback Amount in dollars: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="CashbackAmount" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Complain (1 for yes, 0 for no): </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="Complain" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Days Since Last Order: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="DaySinceLastOrder" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Warehouse To Home in Miles: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="WarehouseToHome" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Number Of Address: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="NumberOfAddress" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Satisfaction Score (1 to 5): </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="SatisfactionScore" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Order Amount Hike From last Year: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="OrderAmountHikeFromlastYear" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Order Count: </label><br>
+    	<input style="height:30px; width:500px;  font-size:12pt;" type="text" name="OrderCount" placeholder="" required="required" /><br>
+    	</p>
+    	<p>
+    <label for="name" style="color:#5DADE2; font-size:20px;">Number Of Device Registered: </label><br>
+    <input style="height:30px; width:500px;  font-size:12pt;" type="text" name="NumberOfDeviceRegistered" placeholder="" required="required" /><p>
+    </p>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict Customer Churn</button></p>
+    </form>
+
+   <br>
+   <h2 style="color:#FFC300;">
+   {{ prediction_text }} </h2>
+   <br>
+
+   
+   <p style="color:#FFFFFF;">Copyright by ChurnGuru©</p>
+   <br>
+   <br>
+
+ </div>
+
+
+</body>
+</html>
