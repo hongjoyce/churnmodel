@@ -18,8 +18,8 @@ people with heart disease in an imaginary sample of 500 towns.
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
-import shap
-from shap.plots._force_matplotlib import draw_additive_plot
+import xgboost
+from xgboost import XGBClassifier
 
 #Create an app object using the Flask class. 
 app = Flask(__name__)
@@ -57,23 +57,25 @@ def predict():
 
     return render_template('index.html', prediction_text='Customer will {}'.format(answer))
 
-@app.route('/predict',methods=['POST'])
-def displayshap():
-    int_features = [float(x) for x in request.form.values()] #Convert string inputs to float.
-    features = [np.array(int_features)]
-    
-    explainer = shap.TreeExplainer(model[-1]) 
-    shap_values = explainer(model[:-1].transform(features))
-    def _force_plot_html(explainer, shap_values):
-        force_plot = shap.force_plot(explainer.expected_value, shap_values.values, model.feature_names_in_, plot_cmap="DrDb")
-        print("here?")
-
-        shap_html = f"<head>{shap.getjs()}</head><body>{force_plot.html()}</body>"
-        return html.Iframe(srcDoc=shap_html,
-                       style={"width": "100%", "height": "200px", "border": 0})
-    shap_plots = _force_plot_html(explainer, shap_values)
-   
-    return render_template('displayshap.html', shap_plots = shap_plots)
+# =============================================================================
+# @app.route('/predict',methods=['POST'])
+# def displayshap():
+#     int_features = [float(x) for x in request.form.values()] #Convert string inputs to float.
+#     features = [np.array(int_features)]
+#     
+#     explainer = shap.TreeExplainer(model[-1]) 
+#     shap_values = explainer(model[:-1].transform(features))
+#     def _force_plot_html(explainer, shap_values):
+#         force_plot = shap.force_plot(explainer.expected_value, shap_values.values, model.feature_names_in_, plot_cmap="DrDb")
+#         print("here?")
+# 
+#         shap_html = f"<head>{shap.getjs()}</head><body>{force_plot.html()}</body>"
+#         return html.Iframe(srcDoc=shap_html,
+#                        style={"width": "100%", "height": "200px", "border": 0})
+#     shap_plots = _force_plot_html(explainer, shap_values)
+#    
+#     return render_template('displayshap.html', shap_plots = shap_plots)
+# =============================================================================
     
 
 
