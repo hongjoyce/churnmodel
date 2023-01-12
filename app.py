@@ -89,4 +89,4 @@ def predict():
 #If we import this file (module) to another file then __name__ == app (which is the name of this python file).
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host = '0.0.0.0', port = 5000)
