@@ -18,6 +18,7 @@ people with heart disease in an imaginary sample of 500 towns.
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
+import sklearn
 import xgboost
 from xgboost import XGBClassifier
 
